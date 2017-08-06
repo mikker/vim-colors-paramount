@@ -212,3 +212,8 @@ hi link GitGutterAdd                LineNr
 hi link GitGutterDelete             LineNr
 hi link GitGutterChange             LineNr
 hi link GitGutterChangeDelete       LineNr
+
+hi link diffAdded     DiffAdd
+hi link diffRemoved   DiffDelete
+hi link diffNewFile   Constant
+hi link diffFile      Constant
