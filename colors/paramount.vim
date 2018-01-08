@@ -60,7 +60,7 @@ if &background == "dark"
   let s:red             = s:light_red
   let s:visual          = s:light_purple
 
-  let s:theme_color = s:light_blue
+  let s:theme_color = s:light_purple
 else
   let s:bg              = s:lightest_gray
   let s:bg_subtle       = s:light_gray
@@ -73,7 +73,7 @@ else
   let s:red             = s:dark_red
   let s:visual          = s:light_blue
 
-  let s:theme_color = s:dark_blue
+  let s:theme_color = s:dark_purple
 endif
 
 " https://github.com/noahfrederick/vim-hemisu/
