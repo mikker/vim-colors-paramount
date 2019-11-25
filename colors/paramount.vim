@@ -19,11 +19,11 @@ endif
 
 let g:colors_name='paramount'
 
-let s:black           = { "gui": "#262626", "cterm": "235" }
+let s:black           = { "gui": "#121e2a", "cterm": "235" }
 let s:medium_gray     = { "gui": "#888888", "cterm": "244" }
 let s:white           = { "gui": "#F1F1F1", "cterm": "15"  }
 let s:actual_white    = { "gui": "#FFFFFF", "cterm": "231" }
-let s:subtle_black    = { "gui": "#303030", "cterm": "236" }
+let s:subtle_black    = { "gui": "#1d2732", "cterm": "236" }
 let s:light_black     = { "gui": "#3E3E3E", "cterm": "239" }
 let s:lighter_black   = { "gui": "#606060", "cterm": "241" }
 let s:light_gray      = { "gui": "#A8A8A8", "cterm": "248" }
@@ -31,7 +31,8 @@ let s:lighter_gray    = { "gui": "#DDDDDD", "cterm": "251" }
 let s:lightest_gray   = { "gui": "#EEEEEE", "cterm": "255" }
 let s:pink            = { "gui": "#fb007a", "cterm": "9"   }
 let s:dark_red        = { "gui": "#C30771", "cterm": "1"   }
-let s:light_red       = { "gui": "#E32791", "cterm": "1"   }
+let s:light_red       = { "gui": "#FF5C82", "cterm": "1"   }
+let s:blush           = { "gui": "#E26384", "cterm": "1"   }
 let s:orange          = { "gui": "#D75F5F", "cterm": "167" }
 let s:darker_blue     = { "gui": "#005F87", "cterm": "18"  }
 let s:dark_blue       = { "gui": "#008EC4", "cterm": "4"   }
@@ -60,7 +61,7 @@ if &background == "dark"
   let s:red             = s:light_red
   let s:visual          = s:light_purple
 
-  let s:theme_color = s:light_purple
+  let s:theme_color = s:purple
 else
   let s:bg              = s:lightest_gray
   let s:bg_subtle       = s:light_gray
@@ -89,6 +90,7 @@ function! s:h(group, style)
 endfunction
 
 call s:h("Normal",        {"bg": s:bg, "fg": s:norm})
+" call s:h("Normal",        {"fg": s:norm})
 
 " restore &background's value in case changing Normal changed &background (:help :hi-normal-cterm)
 if &background != s:background
@@ -197,12 +199,15 @@ call s:h("ColorColumn",   {"bg": s:bg_subtle})
 call s:h("MatchParen",    {"bg": s:bg_subtle, "fg": s:norm})
 call s:h("qfLineNr",      {"fg": s:medium_gray})
 
-call s:h("htmlH1",        {"bg": s:bg, "fg": s:norm})
-call s:h("htmlH2",        {"bg": s:bg, "fg": s:norm})
-call s:h("htmlH3",        {"bg": s:bg, "fg": s:norm})
-call s:h("htmlH4",        {"bg": s:bg, "fg": s:norm})
-call s:h("htmlH5",        {"bg": s:bg, "fg": s:norm})
-call s:h("htmlH6",        {"bg": s:bg, "fg": s:norm})
+call s:h("htmlH1",        {"fg": s:purple, "gui": "bold"})
+call s:h("htmlH2",        {"fg": s:purple, "gui": "bold"})
+call s:h("htmlH3",        {"fg": s:purple, "gui": "bold"})
+call s:h("htmlH4",        {"fg": s:purple, "gui": "bold"})
+call s:h("htmlH5",        {"fg": s:purple, "gui": "bold"})
+call s:h("htmlH6",        {"fg": s:purple, "gui": "bold"})
+call s:h("htmlLink",      {"bg": s:bg, "fg": s:theme_color})
+call s:h("htmlItalic",    {"gui": "italic"})
+call s:h("htmlBold",      {"gui": "bold"})
 
 " Signify, git-gutter
 hi link SignifySignAdd              LineNr
@@ -217,3 +222,9 @@ hi link diffAdded     DiffAdd
 hi link diffRemoved   DiffDelete
 hi link diffNewFile   Constant
 hi link diffFile      Constant
+
+" Sorbet types
+hi Sig guifg=#f8c5a2 gui=italic cterm=italic
+hi link SigBlock Sig
+hi link SigBlockDelimiter Sig
+
