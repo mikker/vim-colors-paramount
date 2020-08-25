@@ -14,7 +14,7 @@
 hi clear
 
 if exists('syntax on')
-  syntax reset
+    syntax reset
 endif
 
 let g:colors_name='paramount'
@@ -28,7 +28,7 @@ let s:light_black     = { "gui": "#3E3E3E", "cterm": "239" }
 let s:lighter_black   = { "gui": "#606060", "cterm": "241" }
 let s:light_gray      = { "gui": "#A8A8A8", "cterm": "248" }
 let s:lighter_gray    = { "gui": "#eeeeee", "cterm": "251" }
-let s:lightest_gray   = { "gui": "#f9f5f3", "cterm": "255" }
+let s:lightest_gray   = { "gui": "#ebebeb", "cterm": "255" }
 let s:pink            = { "gui": "#fb007a", "cterm": "9"   }
 let s:dark_red        = { "gui": "#C30771", "cterm": "1"   }
 let s:light_red       = { "gui": "#FF5C82", "cterm": "1"   }
@@ -83,21 +83,20 @@ endif
 " https://github.com/noahfrederick/vim-hemisu/
 function! s:h(group, style)
   execute "highlight" a:group
-        \ "guifg="   (has_key(a:style, "fg")    ? a:style.fg.gui   : "NONE")
-        \ "guibg="   (has_key(a:style, "bg")    ? a:style.bg.gui   : "NONE")
-        \ "guisp="   (has_key(a:style, "sp")    ? a:style.sp.gui   : "NONE")
-        \ "gui="     (has_key(a:style, "gui")   ? a:style.gui      : "NONE")
-        \ "ctermfg=" (has_key(a:style, "fg")    ? a:style.fg.cterm : "NONE")
-        \ "ctermbg=" (has_key(a:style, "bg")    ? a:style.bg.cterm : "NONE")
-        \ "cterm="   (has_key(a:style, "cterm") ? a:style.cterm    : "NONE")
+    \ "guifg="   (has_key(a:style, "fg")    ? a:style.fg.gui   : "NONE")
+    \ "guibg="   (has_key(a:style, "bg")    ? a:style.bg.gui   : "NONE")
+    \ "guisp="   (has_key(a:style, "sp")    ? a:style.sp.gui   : "NONE")
+    \ "gui="     (has_key(a:style, "gui")   ? a:style.gui      : "NONE")
+    \ "ctermfg=" (has_key(a:style, "fg")    ? a:style.fg.cterm : "NONE")
+    \ "ctermbg=" (has_key(a:style, "bg")    ? a:style.bg.cterm : "NONE")
+    \ "cterm="   (has_key(a:style, "cterm") ? a:style.cterm    : "NONE")
 endfunction
 
-" call s:h("Normal",        {"bg": s:bg, "fg": s:norm})
-call s:h("Normal",        {"fg": s:norm})
+call s:h("Normal",        {"bg": s:bg, "fg": s:norm})
 
 " restore &background's value in case changing Normal changed &background (:help :hi-normal-cterm)
 if &background != s:background
-  execute "set background=" . s:background
+   execute "set background=" . s:background
 endif
 
 call s:h("Cursor",        {"bg": s:theme_color, "fg": s:norm })
@@ -211,6 +210,22 @@ call s:h("htmlH6",        {"fg": s:purple, "gui": "bold"})
 call s:h("htmlLink",      {"bg": s:bg, "fg": s:theme_color})
 call s:h("htmlItalic",    {"gui": "italic"})
 call s:h("htmlBold",      {"gui": "bold"})
+
+" Synatastic
+call s:h("SyntasticWarningSign",    {"fg": s:yellow})
+call s:h("SyntasticWarning",        {"bg": s:yellow, "fg": s:black, "gui": "
+bold", "cterm": "bold"})
+call s:h("SyntasticErrorSign",      {"fg": s:red})
+call s:h("SyntasticError",          {"bg": s:red, "fg": s:white, "gui": "bol
+d", "cterm": "bold"})
+
+" Neomake
+hi link NeomakeWarningSign    SyntasticWarningSign
+hi link NeomakeErrorSign    SyntasticErrorSign
+
+" ALE
+hi link ALEWarningSign    SyntasticWarningSign
+hi link ALEErrorSign    SyntasticErrorSign
 
 " Signify, git-gutter
 hi link SignifySignAdd              LineNr
