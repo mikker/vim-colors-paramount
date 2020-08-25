@@ -27,13 +27,14 @@ let s:subtle_black    = { "gui": "#1d2732", "cterm": "236" }
 let s:light_black     = { "gui": "#3E3E3E", "cterm": "239" }
 let s:lighter_black   = { "gui": "#606060", "cterm": "241" }
 let s:light_gray      = { "gui": "#A8A8A8", "cterm": "248" }
-let s:lighter_gray    = { "gui": "#DDDDDD", "cterm": "251" }
-let s:lightest_gray   = { "gui": "#EEEEEE", "cterm": "255" }
+let s:lighter_gray    = { "gui": "#eeeeee", "cterm": "251" }
+let s:lightest_gray   = { "gui": "#f9f5f3", "cterm": "255" }
 let s:pink            = { "gui": "#fb007a", "cterm": "9"   }
 let s:dark_red        = { "gui": "#C30771", "cterm": "1"   }
 let s:light_red       = { "gui": "#FF5C82", "cterm": "1"   }
 let s:blush           = { "gui": "#E26384", "cterm": "1"   }
 let s:orange          = { "gui": "#D75F5F", "cterm": "167" }
+let s:maroon          = { "gui": "#a34d4a", "cterm": "167" }
 let s:darker_blue     = { "gui": "#005F87", "cterm": "18"  }
 let s:dark_blue       = { "gui": "#008EC4", "cterm": "4"   }
 let s:blue            = { "gui": "#20BBFC", "cterm": "12"  }
@@ -46,13 +47,15 @@ let s:dark_purple     = { "gui": "#916ba7", "cterm": "134" }
 let s:light_purple    = { "gui": "#a790d5", "cterm": "140" }
 let s:yellow          = { "gui": "#f6dd37", "cterm": "11"  }
 let s:dark_yellow     = { "gui": "#A89C14", "cterm": "3"   }
+let s:gold            = { "gui": "#ffebb2", "cterm": "3"   }
+let s:oil             = { "gui": "#30312e", "cterm": "3"   }
 
 let s:background = &background
 
 if &background == "dark"
   let s:bg              = s:black
   let s:bg_subtle       = s:lighter_black
-  let s:bg_very_subtle  = s:subtle_black
+  let s:bg_very_subtle  = s:oil
   let s:norm            = s:lighter_gray
   let s:norm_subtle     = s:medium_gray
   let s:purple          = s:light_purple
@@ -61,7 +64,7 @@ if &background == "dark"
   let s:red             = s:light_red
   let s:visual          = s:light_purple
 
-  let s:theme_color = s:purple
+  let s:theme_color = s:gold
 else
   let s:bg              = s:lightest_gray
   let s:bg_subtle       = s:light_gray
@@ -74,7 +77,7 @@ else
   let s:red             = s:dark_red
   let s:visual          = s:light_blue
 
-  let s:theme_color = s:dark_purple
+  let s:theme_color = s:blush
 endif
 
 " https://github.com/noahfrederick/vim-hemisu/
@@ -89,8 +92,8 @@ function! s:h(group, style)
         \ "cterm="   (has_key(a:style, "cterm") ? a:style.cterm    : "NONE")
 endfunction
 
-call s:h("Normal",        {"bg": s:bg, "fg": s:norm})
-" call s:h("Normal",        {"fg": s:norm})
+" call s:h("Normal",        {"bg": s:bg, "fg": s:norm})
+call s:h("Normal",        {"fg": s:norm})
 
 " restore &background's value in case changing Normal changed &background (:help :hi-normal-cterm)
 if &background != s:background
@@ -153,7 +156,7 @@ hi! link ModeMsg MoreMsg
 if &background == "dark"
   call s:h("LineNr",        {"fg": s:bg_subtle})
 else
-  call s:h("LineNr",        {"fg": s:bg_very_subtle})
+  call s:h("LineNr",        {"fg": s:light_gray})
 end
 call s:h("CursorLineNr",  {"fg": s:norm_subtle, "bg": s:bg_very_subtle})
 call s:h("Question",      {"fg": s:red})
@@ -228,3 +231,4 @@ hi Sig guifg=#f8c5a2 gui=italic cterm=italic
 hi link SigBlock Sig
 hi link SigBlockDelimiter Sig
 
+hi link javaScriptLineComment Comment
