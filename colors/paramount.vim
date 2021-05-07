@@ -19,16 +19,17 @@ endif
 
 let g:colors_name='paramount'
 
-let s:black           = { "gui": "#121e2a", "cterm": "235" }
+let s:black           = { "gui": "#000000", "cterm": "235" }
+let s:darkest_gray    = { "gui": "#26282d", "cterm": "235" }
+let s:subtle_black    = { "gui": "#1d2732", "cterm": "236" }
+let s:dark_gray       = { "gui": "#3E3E3E", "cterm": "239" }
+let s:lighter_black   = { "gui": "#606060", "cterm": "241" }
 let s:medium_gray     = { "gui": "#888888", "cterm": "244" }
+let s:light_gray      = { "gui": "#A8A8A8", "cterm": "248" }
+let s:lighter_gray    = { "gui": "#cccccc", "cterm": "251" }
+let s:lightest_gray   = { "gui": "#f8f1ea", "cterm": "255" }
 let s:white           = { "gui": "#F1F1F1", "cterm": "15"  }
 let s:actual_white    = { "gui": "#FFFFFF", "cterm": "231" }
-let s:subtle_black    = { "gui": "#1d2732", "cterm": "236" }
-let s:light_black     = { "gui": "#3E3E3E", "cterm": "239" }
-let s:lighter_black   = { "gui": "#606060", "cterm": "241" }
-let s:light_gray      = { "gui": "#A8A8A8", "cterm": "248" }
-let s:lighter_gray    = { "gui": "#eeeeee", "cterm": "251" }
-let s:lightest_gray   = { "gui": "#ebebeb", "cterm": "255" }
 let s:pink            = { "gui": "#fb007a", "cterm": "9"   }
 let s:dark_red        = { "gui": "#C30771", "cterm": "1"   }
 let s:light_red       = { "gui": "#FF5C82", "cterm": "1"   }
@@ -49,11 +50,12 @@ let s:yellow          = { "gui": "#f6dd37", "cterm": "11"  }
 let s:dark_yellow     = { "gui": "#A89C14", "cterm": "3"   }
 let s:gold            = { "gui": "#ffebb2", "cterm": "3"   }
 let s:oil             = { "gui": "#30312e", "cterm": "3"   }
+let s:soapstone       = { "gui": "#EDE4DA", "cterm": "241" }
 
 let s:background = &background
 
 if &background == "dark"
-  let s:bg              = s:black
+  let s:bg              = s:darkest_gray
   let s:bg_subtle       = s:lighter_black
   let s:bg_very_subtle  = s:oil
   let s:norm            = s:lighter_gray
@@ -64,12 +66,12 @@ if &background == "dark"
   let s:red             = s:light_red
   let s:visual          = s:light_purple
 
-  let s:theme_color = s:gold
+  let s:theme_color = s:light_purple
 else
   let s:bg              = s:lightest_gray
   let s:bg_subtle       = s:light_gray
-  let s:bg_very_subtle  = s:lighter_gray
-  let s:norm            = s:light_black
+  let s:bg_very_subtle  = s:soapstone
+  let s:norm            = s:dark_gray
   let s:norm_subtle     = s:medium_gray
   let s:purple          = s:dark_purple
   let s:cyan            = s:dark_cyan
@@ -148,8 +150,8 @@ call s:h("SpecialKey",    {"fg": s:light_green})
 call s:h("NonText",       {"fg": s:medium_gray})
 call s:h("Directory",     {"fg": s:dark_blue})
 call s:h("ErrorMsg",      {"fg": s:pink})
-call s:h("Search",        {"bg": s:yellow, "fg": s:light_black})
-call s:h("IncSearch",     {"bg": s:yellow, "fg": s:light_black})
+call s:h("Search",        {"bg": s:yellow, "fg": s:dark_gray})
+call s:h("IncSearch",     {"bg": s:yellow, "fg": s:dark_gray})
 call s:h("MoreMsg",       {"fg": s:medium_gray, "cterm": "bold", "gui": "bold"})
 hi! link ModeMsg MoreMsg
 if &background == "dark"
@@ -213,11 +215,9 @@ call s:h("htmlBold",      {"gui": "bold"})
 
 " Synatastic
 call s:h("SyntasticWarningSign",    {"fg": s:yellow})
-call s:h("SyntasticWarning",        {"bg": s:yellow, "fg": s:black, "gui": "
-bold", "cterm": "bold"})
+call s:h("SyntasticWarning",        {"bg": s:yellow, "fg": s:black, "gui": "bold", "cterm": "bold"})
 call s:h("SyntasticErrorSign",      {"fg": s:red})
-call s:h("SyntasticError",          {"bg": s:red, "fg": s:white, "gui": "bol
-d", "cterm": "bold"})
+call s:h("SyntasticError",          {"bg": s:red, "fg": s:white, "gui": "bold", "cterm": "bold"})
 
 " Neomake
 hi link NeomakeWarningSign    SyntasticWarningSign
@@ -226,6 +226,23 @@ hi link NeomakeErrorSign    SyntasticErrorSign
 " ALE
 hi link ALEWarningSign    SyntasticWarningSign
 hi link ALEErrorSign    SyntasticErrorSign
+
+" LSP
+hi link LspDiagnosticsError SyntasticError
+hi link LspDiagnosticsErrorSign SyntasticErrorSign
+" hi link LspDiagnosticsErrorFloating SyntasticErrorFloating
+hi link LspDiagnosticsWarning SyntasticWarning
+hi link LspDiagnosticsWarningSign SyntasticWarningSign
+" hi link LspDiagnosticsWarningFloating SyntasticWarningFloating
+hi link LspDiagnosticsInformation SyntasticWarning
+hi link LspDiagnosticsInformationSign SyntasticWarningSign
+" hi link LspDiagnosticsInformationFloating SyntasticWarningFloating
+hi link LspDiagnosticsHelp SyntasticWarning
+hi link LspDiagnosticsHelpSign SyntasticWarningSign
+" hi link LspDiagnosticsHelpFloating SyntasticHelpFloating
+" hi link LspReferenceText Normal
+" hi link LspReferenceRead Normal
+" hi link LspReferenceWrite Normal
 
 " Signify, git-gutter
 hi link SignifySignAdd              LineNr
